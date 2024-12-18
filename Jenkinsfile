@@ -7,7 +7,7 @@ pipeline {
                 docker {
                     image 'node:18' // เปลี่ยนเป็น Debian-based image
                     reuseNode true
-                    args '--dns 8.8.8.8 --dns 8.8.4.4' // กำหนด DNS server
+                    // args '--dns 8.8.8.8 --dns 8.8.4.4' // กำหนด DNS server
                 }
             }
             steps {
@@ -28,7 +28,7 @@ pipeline {
                 docker {
                     image 'node:18' // ใช้ Debian-based image
                     reuseNode true
-                    args '--dns 8.8.8.8 --dns 8.8.4.4' // กำหนด DNS server
+                    // args '--dns 8.8.8.8 --dns 8.8.4.4' // กำหนด DNS server
                 }
             }
             steps {
@@ -49,7 +49,7 @@ pipeline {
                 docker {
                     image 'node:18' // ใช้ Debian-based image
                     reuseNode true
-                    args '--dns 8.8.8.8 --dns 8.8.4.4' // กำหนด DNS server
+                    // args '--dns 8.8.8.8 --dns 8.8.4.4' // กำหนด DNS server
                 }
             }
             steps {
@@ -66,6 +66,7 @@ pipeline {
 
                     # แสดงเวอร์ชันของ netlify-cli
                     ./node_modules/.bin/netlify --version
+                    netlify --version
                 '''
             }
         }
