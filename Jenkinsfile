@@ -11,6 +11,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    apk add --no-cache python3 make g++
                     ls -la
                     node --version
                     npm --version
