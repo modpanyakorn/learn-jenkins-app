@@ -45,7 +45,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    npm install glob
+                    npm i glob@10.4.5
                     npm install netlify-cli
                     netlify --version
                 '''
