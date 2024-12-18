@@ -12,6 +12,7 @@ pipeline {
             steps {
                 sh '''
                     apt-get update && apt-get install -y python3 make g++
+                    python3 --version
                     ls -la
                     node --version
                     npm --version
