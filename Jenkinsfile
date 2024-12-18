@@ -7,7 +7,7 @@ pipeline {
                 docker {
                     image 'node:18' // ใช้ Debian-based image
                     reuseNode true
-                    args '-u 0:0' // รันเป็น root user
+                    args '-u 0:0 --dns 8.8.8.8 --dns 8.8.4.4' // รันเป็น root user และกำหนด DNS
                 }
             }
             steps {
@@ -34,7 +34,7 @@ pipeline {
                 docker {
                     image 'node:18' // ใช้ Debian-based image
                     reuseNode true
-                    args '-u 0:0' // รันเป็น root user
+                    args '-u 0:0 --dns 8.8.8.8 --dns 8.8.4.4' // รันเป็น root user และกำหนด DNS
                 }
             }
             steps {
@@ -48,15 +48,21 @@ pipeline {
         stage('Deploy') {
             agent {
                 docker {
-                    image 'node:18'
+                    image 'node:18' // ใช้ Debian-based image
                     reuseNode true
-                    args '-u 0:0'
+                    args '-u 0:0 --dns 8.8.8.8 --dns 8.8.4.4' // รันเป็น root user และกำหนด DNS
                 }
             }
             steps {
                 script {
-                    retry(3) {
+                    retry(3) { // ลองติดตั้งซ้ำได้ 3 ครั้ง
                         sh '''
+                            # ตรวจสอบการเชื่อมต่อเครือข่าย
+                            echo "Checking network connectivity..."
+                            ping -c 2 registry.npmjs.org || echo "Ping failed"
+                            curl -I https://registry.npmjs.org || echo "Curl failed"
+
+                            # ติดตั้ง netlify-cli
                             npm install netlify-cli
                             node_modules/.bin/netlify --version
                         '''
