@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'node:18' // เปลี่ยนเป็น Debian-based image
+                    image 'node:18-alpine' // เปลี่ยนเป็น Debian-based image
                     reuseNode true
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'node:18' // ใช้ Debian-based image
+                    image 'node:18-alpine' // ใช้ Debian-based image
                     reuseNode true
                 }
             }
@@ -44,7 +44,7 @@ pipeline {
         stage('Deploy') {
             agent {
                 docker {
-                    image 'node:18' // ใช้ Debian-based image
+                    image 'node:18-alpine' // ใช้ Debian-based image
                     reuseNode true
                 }
             }
