@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'node:18-alpine' // เปลี่ยนเป็น Debian-based image
+                    image 'node:18-alpine'
                     reuseNode true
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'node:18-alpine' // ใช้ Debian-based image
+                    image 'node:18-alpine'
                     reuseNode true
                 }
             }
@@ -44,16 +44,13 @@ pipeline {
         stage('Deploy') {
             agent {
                 docker {
-                    image 'node:18-alpine' // ใช้ Debian-based image
+                    image 'node:18-alpine'
                     reuseNode true
                 }
             }
             steps {
                 sh '''
-
-
                     npm install netlify-cli
-
                     node_modules/.bin/netlify --version
                 '''
             }
