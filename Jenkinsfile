@@ -100,9 +100,8 @@ pipeline {
             }
             steps {
                 sh '''
-                    npm install glob
                     npm install netlify-cli
-                    node_modules/.bin/netlify --version
+                    netlify --version
                 '''
             }
         }
