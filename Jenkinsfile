@@ -1,27 +1,29 @@
 pipeline {
     agent any
-
+ 
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'node:18' // ใช้ Debian-based image
+            agent{
+                docker{
+                    image 'node:18'
                     reuseNode true
                 }
             }
             steps {
                 sh '''
+                    ls -la
                     node --version
                     npm --version
                     npm ci
                     npm run build
+                    ls -la
                 '''
             }
         }
 
         stage('Test') {
-            agent {
-                docker {
+            agent{
+                docker{
                     image 'node:18'
                     reuseNode true
                 }
@@ -33,10 +35,11 @@ pipeline {
                 '''
             }
         }
+    }
 
-        stage('Deploy') {
-            agent {
-                docker {
+    stage('Deploy') {
+            agent{
+                docker{
                     image 'node:18'
                     reuseNode true
                 }
@@ -48,5 +51,4 @@ pipeline {
                 '''
             }
         }
-    }
 }
