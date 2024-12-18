@@ -42,14 +42,10 @@ pipeline {
                 }
             }
             steps {
-                script {
-                    retry(3) {
-                        sh '''
-                            npm install netlify-cli
-                            node_modules/.bin/netlify --version
-                        '''
-                    }
-                }
+                sh '''
+                    npm install netlify-cli
+                    node_modules/.bin/netlify --version
+                '''
             }
         }
     }
