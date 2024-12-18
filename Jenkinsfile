@@ -66,7 +66,6 @@ pipeline {
 
                     # แสดงเวอร์ชันของ netlify-cli
                     ./node_modules/.bin/netlify --version
-                    netlify --version
                 '''
             }
         }
